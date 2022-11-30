@@ -1,3 +1,17 @@
+/*
+ * 2. Napraviti objekat koji ima za kljuc ekstenziju, 
+ * a za vrednost listu imena fajlova sa tom ekstenzijom:
+ *  npr: {
+ *  	"text/html": [ "webstranica.html", "index.html"	], 
+ *  	"image/png": ["vladicin_ker.png", "ivan_sladoledzija.png"],
+ *  	"image/gif": [ "chabijeva_ikona_igra.gif", "sanja&natasa.gif"],
+ *  	"application/json": ["setup_file.json"], 
+ *  	... 
+ *  	}
+ */
+
+
+
 function getExtensions (file){
     const extensions = file.split('.').pop();
     switch (extensions) {
@@ -25,6 +39,8 @@ const fileNames = [
 	"ivan_sladoledzija.png",
 	"sale_open_question.gif",
 ];
+
+const result = fileNames.reduce();
 
 
 
