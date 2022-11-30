@@ -1,1 +1,3 @@
-console.log("Hello World")
+console.log("Hello");
+console.log("New line");
+console.log("Refactor")
