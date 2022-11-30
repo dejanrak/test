@@ -1,3 +1,18 @@
+function getExtensions (file){
+    const extensions = file.split('.').pop();
+    switch (extensions) {
+        case "html":
+            return "text/html";
+        case "png":
+            return "image/png";
+        case "gif":
+            return "image/gif";
+        case "json":
+            return "application/json";
+        default: 
+            return "";
+    }
+}
 
 const fileNames = [
 	"webstranica.html",
@@ -12,32 +27,10 @@ const fileNames = [
 ];
 
 
-let array=[];
 
-for(let i=0; i < fileNames.length; i++){
-    array.push(getExtensions(fileNames[i]));
-}
+const fileTypes = fileNames.map(file => getExtensions(file));
 
 
-function getExtensions (file){
-    let newFile="";
-    const extensions = file.split('.').pop();
-
-    if(extensions === "html"){
-        newFile = "text/html";
-    }
-    if(extensions === "png"){
-        newFile = "image/png";
-    }
-    if(extensions === "gif"){
-        newFile = "image/gif";
-    }
-    if(extensions === "json"){
-        newFile = "application/json";
-    }
-    return newFile; 
-}
-
-console.log(array);
+console.log(fileTypes);
 
 
