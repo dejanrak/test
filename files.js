@@ -11,8 +11,7 @@
  */
 
 
-//kajbfjkasbjfk
-asd
+// Test comment
 
 function getExtensions (file){
     const extensions = file.split('.').pop();
