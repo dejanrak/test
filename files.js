@@ -11,6 +11,8 @@
  */
 
 
+//kajbfjkasbjfk
+asd
 
 function getExtensions (file){
     const extensions = file.split('.').pop();
@@ -18,11 +20,14 @@ function getExtensions (file){
         case "html":
             return "text/html";
         case "png":
+            //jhasgfhasgfhgas
             return "image/png";
         case "gif":
             return "image/gif";
         case "json":
             return "application/json";
+        case "deki":
+            return "asdasd"
         default: 
             return "";
     }
