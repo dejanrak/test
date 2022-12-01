@@ -27,7 +27,7 @@ function getExtensions (file){
     }
 }
 
-const rezultat = {};
+const rezultat = {noviObjekat : {}};
 
 for(const fileName of fileNames){
     const ext= getExtensions(fileName);
@@ -39,3 +39,31 @@ for(const fileName of fileNames){
 }
 
 console.log(rezultat);
+
+
+
+/*const rez = fileNames.reduce((acc, fileName) => {
+    const ext= getExtensions(fileName);
+    if(acc[ext]){
+        acc[ext].push(fileName);
+    }else{
+        acc[ext] = [fileName];
+    }
+    return acc;
+}, {});
+
+console.log(rez);*/
+
+
+
+const reduceRez = fileNames.reduce((acc, fileName) => {
+    const key= getExtensions(fileName);
+    if(acc[key]){
+        acc[ext].push(fileName);
+    }else{
+        acc[ext] = {[fileName], sum};
+    }
+    return acc;
+}, {});
+
+console.log(reduceRez);
