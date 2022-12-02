@@ -56,7 +56,7 @@ console.log(rez);*/
 
 
 
-const reduceRez = fileNames.reduce((acc, fileName) => {
+/*const reduceRez = fileNames.reduce((acc, fileName) => {
     const key= getExtensions(fileName);
     if(acc[key]){
         acc[ext].push(fileName);
@@ -66,4 +66,18 @@ const reduceRez = fileNames.reduce((acc, fileName) => {
     return acc;
 }, {});
 
-console.log(reduceRez);
+console.log(reduceRez);*/
+
+
+const rez= fileNames.reduce((acc, fileName) => {
+
+    const key= getExtensions(fileName);
+    if(!acc[key]){
+        acc[key] = { fileNames:[], count:0 };
+    }
+    acc[key]["fileNames"].push(fileName);
+    acc[key]["count"]+=1; 
+    return acc;
+}, {});
+
+console.log(rez);
