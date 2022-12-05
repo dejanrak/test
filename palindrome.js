@@ -1,7 +1,3 @@
-
-
-
-
 function checkpalindrome(word){
     
     if(word.length < 1){
@@ -24,3 +20,5 @@ const wordword="ana voli milovana";
 
 console.log(wordword.replace(/\s/g, '') );
 console.log(checkpalindrome(wordword));
+
+//ovo je proba od kuce
