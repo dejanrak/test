@@ -10,6 +10,31 @@
  *  	}
  */
 
+/*
+ * 3. Kljuc je ime ekstenzije, a vrednost objekat koji sadrzi broj fajlova
+ * sa tom ekstenzijom i listu imena fajlova sa tom ekstenzijom
+ * {
+ *  	"text/html": {
+ *  		count: 2,	
+ *  		fileNames: ["webstranica.html", "index.html"]
+ *  	}, 
+ *  	"image/png": {
+ *  		count: 2,	
+ *  		fileNames: ["vladicin_ker.png", "ivan_sladoledzija.png"]
+ *  	},
+ *  	"image/gif": {
+ *  		count: 2,	
+ *  		fileNames: [ "chabijeva_ikona_igra.gif", "sanja&natasa.gif"],
+ *  	,}
+ *  	"application/json": {
+ *  		count: 1,	
+ *  		fileNames: ["setup_file.json"], 
+ *  	},
+ *  	... 
+ *  	}
+​
+ */
+
 const fileNames = [
 	"webstranica.html",
 	"vladicin_ker.png",
@@ -42,8 +67,6 @@ function getExtension (file){
     }
 }
 
-//console.log(getExtension("deki.app"));
-
 function getExtensions (fileNames){
     const newArray = [];
     for(let i=0;i<fileNames.length;i++){
@@ -54,5 +77,18 @@ function getExtensions (fileNames){
     return newArray;
 }
 
-console.log(getExtensions(fileNames));
+//console.log(getExtensions(fileNames));
 
+const newObject = {}
+
+for (const fileName of fileNames){
+    const ext = getExtension(fileName);
+    if(newObject[ext]){
+        newObject[ext].push(fileName);
+    } else {
+        newObject[ext] = [fileName];
+        //newObject[ext].push(fileName);
+    }
+}
+
+console.log(newObject);
