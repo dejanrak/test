@@ -87,8 +87,21 @@ for (const fileName of fileNames){
         newObject[ext].push(fileName);
     } else {
         newObject[ext] = [fileName];
-        //newObject[ext].push(fileName);
     }
 }
 
-console.log(newObject);
+//console.log(newObject);
+
+
+const result = fileNames.reduce((acc, fileName) =>{
+    const key= getExtension(fileName);
+    if(!acc[key]){
+        acc[key] = { fileName : [] , count :0 }
+    }
+    acc[key]["fileName"].push(fileName);
+    acc[key]["count"]+=1;
+
+    return acc;
+},{});
+
+console.log(result);
