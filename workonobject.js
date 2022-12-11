@@ -51,7 +51,7 @@ const files = [
 
 */
 
-const newObject = {};
+/*const newObject = {};
 
 for (const file of files){
     const key= file.refId;
@@ -59,6 +59,23 @@ for (const file of files){
     
 }
 
-console.log(newObject);
+console.log(newObject);*/
 
 //bez fora i bez name, surname i type(recimo da ne znam sta su kijevi)
+
+const result = files.reduce((acc, file) =>{
+    const key= file.refId;
+    //console.log(file.[data].[key]);
+    //console.log(Object.keys(file.data));
+    const firstKey = (Object.keys(file.data)[0]);
+    console.log(firstKey);
+    const secondKey = (Object.keys(file.data)[1]);
+    console.log(secondKey);
+    const thirdKey = (Object.keys(file.data)[2]);
+    console.log(thirdKey);
+    acc[key] = { "firstKey" : file.data.name , "secondKey" : file.data.surname, "thirdKey" : file.data.type };
+   
+    return acc;
+},{});
+
+console.log(result);
