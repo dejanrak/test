@@ -698,82 +698,83 @@ const inputJson = [{
     "dateOfBirth": "2022-10-05",
     "phoneNumber": "7246393603",
     "profession": "Database Administrator III"
-  }]
+  }];
 
-  /*1. zadatak transformisi niz tako da dobijes objekat ciji su kljucevi brojevi telefona a vrednosti objekat sa ostatkom kljuceva (sve sem phoneNumber)
-  const example = {7246393603: { 
-fullName: "Darcy Sumnall",
-  gender: "Female",
-  placeOfBirth: "Nijmegen",
-  dateOfBirth: "2022-10-05",
-  profession: "Database Administrator III"},
-135246235: {}}*/
-
-//2. zadatak vratiti niz objekata ljudi koji a) Imaju rec manager (case insensitive) unutar profesije, b) ime grada pocinje sa "p", c) sve iz 2021
-
-//3. zadatak za sve ljude koji imaju engineer negde u nazivu profesije, dodati novi kljuc "education" i popuniti ga sa praznim stringom 
-
-const prvi = inputJson.reduce((acc, person) => {
-    const key= person.phoneNumber;
-    
-    acc[key]= {...person}
-    delete  acc[key].phoneNumber;
-    return acc;
-}, {});
-
-//console.log(prvi);
-
-const professionManager = inputJson.filter((person) => person.profession.toLowerCase().includes("manager"));
-
-//console.log(professionManager);
-
-const cityOfBirthWithP = inputJson.filter((person) => person.placeOfBirth.startsWith("P"));
-
-//console.log(cityOfBirthWithP);
-
-const bornOn2021 = inputJson.filter((person) => person.dateOfBirth.substring(0, 4) === '2021');
-
-//console.log(bornOn2021);
-
-const engineers = inputJson.filter((person) => person.profession.toLowerCase("Engineer").includes("engineer"));
-
-//console.log(engineers);
-
-const newEducetion= engineers.map((person) => ({...person, education: ""}));
-
-//console.log(newEducetion);
+  const example= new Date ("2022-10-05");
+  const primer= Date(example);
+  example.getTime();
+  console.log(primer);
 
 
-function engineersFunction (inputJson){
+  for(const i=1; i<inputJson.length; i++){
+    const date=new Date((inputJson.dateOfBirth)[1]);
+  }
   
-  for (const person of inputJson){
-    if(person.profession.toLowerCase().includes("engineer")){
-      person['education']= '';
+  console.log(date);
+
+  const sortedDesc = inputJson.sort((objA, objB) => Number(objB.dateOfBirth) - Number(objA.dateOfBirth));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const numberOfMales = inputJson.reduce((acc, person) => {
+  if(person.gender==='Male'){
+    acc++;
+  }
+  return acc;
+}, 0);*/
+
+//console.log(numberOfMales);
+
+const numberOfFemales = inputJson.filter((woman) => (woman.gender==='Female'));
+const femaleCount = numberOfFemales.length;
+//console.log(numberOfFemales);
+//console.log(femaleCount);
+
+const lengthOfArray = inputJson.length;
+//console.log(lengthOfArray);
+//const numberOfFemales=lengthOfArray-numberOfMales;
+
+  
+  const report = {
+    maleCount:0,
+    femaleCount:femaleCount,
+  }
+
+  for(const person of inputJson){
+    if(person.gender==='Male'){
+      report.maleCount++;
     }
   }
 
-  return inputJson;
-}
-
-console.log(engineersFunction(inputJson));
-
-/*const index = inputJson.indexOf(inputJson.profession.includes("engineer"));
-
-const x = inputJson.splice(index, 1);
-
-console.log(x);*/
-
-
-
-/*const drugi = inputJson.reduce((acc, person) => {
-    const str = person.profession;
-    const substr = 'Manager';
-    if(str.includes(substr)){
-        acc = {...person};
-    }
-    return acc;
-}, [])
-
-console.log(drugi);*/
-
-
+  //console.log(report);
