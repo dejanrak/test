@@ -700,19 +700,17 @@ const inputJson = [{
     "profession": "Database Administrator III"
   }];
 
-  const example= new Date ("2022-10-05");
-  const primer= Date(example);
-  example.getTime();
-  console.log(primer);
-
-
-  for(const i=1; i<inputJson.length; i++){
-    const date=new Date((inputJson.dateOfBirth)[1]);
-  }
+function getTime (date){
+    const makeingDate= new Date(date);
+    const time=makeingDate.getTime();
+  return time;
+}
   
-  console.log(date);
 
-  const sortedDesc = inputJson.sort((objA, objB) => Number(objB.dateOfBirth) - Number(objA.dateOfBirth));
+const sortedDesc = inputJson.sort((objA, objB) => getTime(objB.dateOfBirth) - getTime(objA.dateOfBirth));
+
+
+console.log(sortedDesc);
 
 
 
