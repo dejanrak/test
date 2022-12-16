@@ -501,7 +501,7 @@ const inputJson = [{
     "placeOfBirth": "Gaoxing",
     "dateOfBirth": "2022-09-30",
     "phoneNumber": "7082178161",
-    "profession": "Chief Design Engineer"
+    "profession": "Chief Design engineer"
   }, {
     "fullName": "Kasper Shitliff",
     "gender": "Male",
@@ -702,3 +702,46 @@ const inputJson = [{
 
 
   // output: svi koji nisu engineer i koji nisu rodjenji 2021, koji su zene i cije prvo ime nema vise od 4 karaktera
+
+  const woman= inputJson.filter((person) => (person.gender==='Female'));
+
+  //console.log(woman);
+  
+  const notEngineer= inputJson.filter((person) => (person.profession.toLowerCase().indexOf("engineer") === -1));
+
+  //console.log(notEngineer);
+
+  const shortName = inputJson.filter((person) => {
+    const name = person.fullName.split(' ');
+    //console.log(name);
+    const first = name[0];
+    //console.log(first);
+    if(first.length<=4){
+      //console.log(first);
+      return person;
+    }
+  } );
+
+  //console.log(shortName);
+
+  const notFrom2021 = inputJson.filter((person) => {
+    const date = new Date (person.dateOfBirth);
+    const yearOfDate = date.getFullYear();
+    if(yearOfDate != '2021'){
+      return person;
+    }
+  });
+
+  //console.log(notFrom2021);
+
+  
+
+  const result = inputJson.filter(person => {
+    const isFemale = person.gender ==="Female";
+    const isEngineer = person.profession.toLowerCase().includes("engineer");
+    const yearOfBirth = new Date(person.dateOfBirth).getFullYear();
+    const firstName = person.fullName.split(" ")[0];
+    return isFemale && !isEngineer && yearOfBirth !== "2021" && firstName.length <= 4;
+  });
+
+  console.log(result);

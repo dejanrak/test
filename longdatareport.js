@@ -700,21 +700,31 @@ const inputJson = [{
     "profession": "Database Administrator III"
   }];
 
-  const datum = "05-10-2001";
+  /*const datum = "05-10-2001";
   const realDate = new Date(datum);
   console.log(realDate);
-
-
-
   const yearOfDate = realDate.getFullYear();
-  console.log(yearOfDate);
+  console.log(yearOfDate);*/
 
-  const monthOfYear= realDate.getMonth();
-  console.log(monthOfYear);
+  function getTimeYear(date){
+    const makeingDate= new Date(date);
+    const year= makeingDate.getFullYear;
+    return year;
+  }
 
-  const dayOfYear= realDate.getDate();
-  console.log(dayOfYear);
+function secondTime(date){
+  //const datum = "05-10-2001";
+  const realDate=new Date(date);
+  //console.log(realDate);
+  const time= realDate.getTime();
+  //console.log(time);
+  return time;
+}
+  
 
+const sortedDesc = inputJson.sort((objA, objB) => secondTime(objB.dateOfBirth) - secondTime(objA.dateOfBirth));
+
+console.log(sortedDesc);
 
 
 
@@ -725,7 +735,7 @@ function getTime (date){
   return time;
 }
   
-const sortedDesc = inputJson.sort((objA, objB) => getTime(objB.dateOfBirth) - getTime(objA.dateOfBirth));
+//const sortedDesc = inputJson.sort((objA, objB) => getTime(objB.dateOfBirth) - getTime(objA.dateOfBirth));
 
 
 const newArray= sortedDesc.map((sortedDesc, arrayIndex) => ({ ...sortedDesc, index:arrayIndex}));
