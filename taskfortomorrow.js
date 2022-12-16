@@ -501,7 +501,7 @@ const inputJson = [{
     "placeOfBirth": "Gaoxing",
     "dateOfBirth": "2022-09-30",
     "phoneNumber": "7082178161",
-    "profession": "Chief Design Engineer"
+    "profession": "Chief Design engineer"
   }, {
     "fullName": "Kasper Shitliff",
     "gender": "Male",
@@ -700,109 +700,48 @@ const inputJson = [{
     "profession": "Database Administrator III"
   }];
 
-  /*const datum = "05-10-2001";
-  const realDate = new Date(datum);
-  console.log(realDate);
-  const yearOfDate = realDate.getFullYear();
-  console.log(yearOfDate);*/
 
-  function getTimeYear(date){
-    const makeingDate= new Date(date);
-    const year= makeingDate.getFullYear;
-    return year;
-  }
+  // output: svi koji nisu engineer i koji nisu rodjenji 2021, koji su zene i cije prvo ime nema vise od 4 karaktera
 
-function secondTime(date){
-  //const datum = "05-10-2001";
-  const realDate=new Date(date);
-  //console.log(realDate);
-  const time= realDate.getTime();
-  //console.log(time);
-  return time;
-}
+  const woman= inputJson.filter((person) => (person.gender==='Female'));
+
+  //console.log(woman);
   
+  const notEngineer= inputJson.filter((person) => (person.profession.toLowerCase().indexOf("engineer") === -1));
 
-const sortedDesc = inputJson.sort((objA, objB) => secondTime(objB.dateOfBirth) - secondTime(objA.dateOfBirth));
+  //console.log(notEngineer);
 
-console.log(sortedDesc);
+  const shortName = inputJson.filter((person) => {
+    const name = person.fullName.split(' ');
+    //console.log(name);
+    const first = name[0];
+    //console.log(first);
+    if(first.length<=4){
+      //console.log(first);
+      return person;
+    }
+  } );
 
+  //console.log(shortName);
 
+  const notFrom2021 = inputJson.filter((person) => {
+    const date = new Date (person.dateOfBirth);
+    const yearOfDate = date.getFullYear();
+    if(yearOfDate != '2021'){
+      return person;
+    }
+  });
 
-
-function getTime (date){
-    const makeingDate= new Date(date);
-    const time=makeingDate.getTime();
-  return time;
-}
-  
-//const sortedDesc = inputJson.sort((objA, objB) => getTime(objB.dateOfBirth) - getTime(objA.dateOfBirth));
-
-
-const newArray= sortedDesc.map((sortedDesc, arrayIndex) => ({ ...sortedDesc, index:arrayIndex}));
-
-
-//console.log(newArray);
-
-//const arrayReduce= newArray.reduce((acc, person) => {}, []);
-
-const numberOfFemales = inputJson.filter((woman) => (woman.gender==='Female'));
-const femaleCount = numberOfFemales.length;
-
-const report = {
-  maleCount:0,
-  femaleCount:femaleCount,
-  yearCount: {},
-  professionCount: {},
-}
-
-for(const person of inputJson){
-  if(person.gender==='Male'){
-    report.maleCount++;
-  }
-}
-
-
-for(const person of inputJson){
-  const yearOfBirth= person.dateOfBirth.slice(0, 4);
-  if(!report.yearCount[yearOfBirth]){
-    report.yearCount[yearOfBirth]=0;
-  }
-  report.yearCount[yearOfBirth]+=1;
-}
-
-
-
-for(const person of inputJson){
-  const personProfession = person.profession;
-  if(!report.professionCount[personProfession]){
-    report.professionCount[personProfession]=0;
-  }
-  report.professionCount[personProfession]+=1;
-}
-
-//console.log(report);
-
-
-
-/*const numberOfMales = inputJson.reduce((acc, person) => {
-  if(person.gender==='Male'){
-    acc++;
-  }
-  return acc;
-}, 0);*/
-
-//console.log(numberOfMales);
-
-
-//console.log(numberOfFemales);
-//console.log(femaleCount);
-
-//const lengthOfArray = inputJson.length;
-//console.log(lengthOfArray);
-//const numberOfFemales=lengthOfArray-numberOfMales;
+  //console.log(notFrom2021);
 
   
 
+  const result = inputJson.filter(person => {
+    const isFemale = person.gender ==="Female";
+    const isEngineer = person.profession.toLowerCase().includes("engineer");
+    const yearOfBirth = new Date(person.dateOfBirth).getFullYear();
+    const firstName = person.fullName.split(" ")[0];
+    return isFemale && !isEngineer && yearOfBirth !== "2021" && firstName.length <= 4;
+  });
 
-
-
+  console.log(result);
