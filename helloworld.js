@@ -80,10 +80,10 @@ const fileReduces= fileNames.reduce((acc, fileName) => {
 const result= fileNames.reduce((acc, fileName) => {
     const key=getExtension(fileName);
     if(!acc[key]){
-        acc[key]={ fileName : [], count: { number:0 } };
+        acc[key]={ fileName : [], count:0 };
     }
     acc[key]["fileName"].push(fileName);
-    acc[key]["count"]["number"]+=1;
+    acc[key]["count"]+=1;
     return acc;
 } ,{});
 

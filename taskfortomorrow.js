@@ -707,14 +707,14 @@ const inputJson = [{
 
   //console.log(woman);
   
-  const notEngineer= inputJson.filter((person) => (person.profession.toLowerCase().indexOf("engineer") === -1));
+  const notEngineers= inputJson.filter((person) => (person.profession.toLowerCase().indexOf("engineer") === -1));
 
   //console.log(notEngineer);
 
   const shortName = inputJson.filter((person) => {
     const name = person.fullName.split(' ');
     //console.log(name);
-    const first = name[0];
+    const firstName = name[0];
     //console.log(first);
     if(first.length<=4){
       //console.log(first);
