@@ -27,7 +27,7 @@ function getExtensions (file){
     }
 }
 
-const rezultat = {noviObjekat : {}};
+const rezultat = {};
 
 for(const fileName of fileNames){
     const ext= getExtensions(fileName);
@@ -80,4 +80,4 @@ const rez= fileNames.reduce((acc, fileName) => {
     return acc;
 }, {});
 
-console.log(rez);
+//console.log(rez);
