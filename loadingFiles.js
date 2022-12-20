@@ -1,4 +1,11 @@
 /*
+    !!!!!!!!!!!!!!!!!!!!!!!!
+
+        koda pristupam kijevima unutar objekta pisem [] kada se ki ne menja sa sa navodnicima [""] kada se menja
+
+    !!!!!!!!!!!!!!!!!!!!!!!!
+
+
     {"id":98,"language":"Swedish","country":"SI"},
 
                     ||
@@ -7,6 +14,7 @@
 
 */
 
+const { log } = require('console');
 const { KeyObject } = require('crypto');
 const fs= require('fs');
 const path = require('path');
@@ -50,11 +58,22 @@ try {
         rezultat[key]["mySetLanguage"].add(objArray[i].language);
         rezultat[key]["mySetCountry"].add(objArray[i].country);
 
-        
+    }
+    
+    //console.log(rezultat);
 
+
+    for(let key in rezultat){
+        rezultat[key]["mySetLanguage"]=Array.from(rezultat[key]["mySetLanguage"]);
+        rezultat[key]["mySetCountry"]=Array.from(rezultat[key]["mySetCountry"]);
     }
 
     console.log(rezultat);
+
+    //const nizSpredom = [...rezultat];
+    //console.log(nizSpredom);
+    
+
     /*const myArrayCountry = [...mySetCountry];
     const myArrayLanguage = [...mySetLanguage];
     
@@ -63,9 +82,7 @@ try {
    
     
     //console.log(rezultat);
-    
 
-    //treba da vratim set u niz
 
 
 
