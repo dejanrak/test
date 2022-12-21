@@ -22,7 +22,7 @@ const account = {
         "location": "5 Erie Park", //accounts[0].transactions[0].location
         "card": {
           "number": "633447076665678883", //accounts[0].transactions[0].card.namber
-          "expiry": "4/13/2022",
+          "expiry": "4/13/2021",
           "secureCode": 70  //accounts[0].transactions[0].card.secureCode
         }
       },
@@ -33,7 +33,7 @@ const account = {
         "location": "7296 Emmet Way", //accounts[0].transactions[1].location
         "card": {
           "number": "30452213112458", //accounts[0].transactions[1].card.namber
-          "expiry": "5/8/2022",
+          "expiry": "5/8/2021",
           "secureCode": 32  //accounts[0].transactions[1].card.secureCode
         }
       },
@@ -44,7 +44,7 @@ const account = {
         "location": "676 Shopko Hill",
         "card": {
           "number": "5602251371394396",
-          "expiry": "4/1/2022",
+          "expiry": "4/1/2021",
           "secureCode": 13
         }
       },
@@ -55,7 +55,7 @@ const account = {
         "location": "77033 Bonner Drive",
         "card": {
           "number": "201644615309178",
-          "expiry": "6/1/2022",
+          "expiry": "6/1/2023",
           "secureCode": 7
         }
       },
@@ -66,7 +66,7 @@ const account = {
         "location": "248 Myrtle Parkway",
         "card": {
           "number": "4017955589684",
-          "expiry": "11/21/2022",
+          "expiry": "12/27/2021",
           "secureCode": 3
         }
       },
@@ -77,7 +77,7 @@ const account = {
         "location": "37 Sommers Drive",
         "card": {
           "number": "676143527744005924",
-          "expiry": "6/4/2022",
+          "expiry": "6/4/2021",
           "secureCode": 86
         }
       },
@@ -88,7 +88,7 @@ const account = {
         "location": "9668 Melvin Court",
         "card": {
           "number": "3570929969800527",
-          "expiry": "1/5/2022",
+          "expiry": "1/5/2021",
           "secureCode": 13
         }
       },
@@ -99,7 +99,7 @@ const account = {
         "location": "981 Gale Park",
         "card": {
           "number": "3552629040691513",
-          "expiry": "9/22/2022",
+          "expiry": "9/22/2021",
           "secureCode": 28
         }
       },
@@ -110,7 +110,7 @@ const account = {
         "location": "28 Rusk Parkway",
         "card": {
           "number": "3532887129869393",
-          "expiry": "9/11/2022",
+          "expiry": "9/11/2021",
           "secureCode": 19
         }
       },
@@ -121,7 +121,7 @@ const account = {
         "location": "5 Maple Wood Trail",
         "card": {
           "number": "4844034065223936",
-          "expiry": "8/10/2022",
+          "expiry": "8/10/2021",
           "secureCode": 60
         }
       },
@@ -132,7 +132,7 @@ const account = {
         "location": "14496 Oriole Park",
         "card": {
           "number": "491127944933291971", //accounts[0].transactions[10].card.number
-          "expiry": "9/15/2022",
+          "expiry": "9/15/2021",
           "secureCode": 37 //accounts[0].transactions[10].card.secureCode
         }
       },
@@ -143,7 +143,7 @@ const account = {
         "location": "1 Messerschmidt Court",
         "card": {
           "number": "3547720772959448",
-          "expiry": "11/6/2022",
+          "expiry": "11/6/2021",
           "secureCode": 84
         }
       },
@@ -154,7 +154,7 @@ const account = {
         "location": "32 Caliangt Trail",
         "card": {
           "number": "5602241167409532",
-          "expiry": "10/4/2022",
+          "expiry": "10/4/2021",
           "secureCode": 43
         }
       },
@@ -165,7 +165,7 @@ const account = {
         "location": "1 Tony Road",
         "card": {
           "number": "56022170033010874",
-          "expiry": "1/7/2022",
+          "expiry": "1/7/2021",
           "secureCode": 85
         }
       }
@@ -197,6 +197,76 @@ const arrayOfSecureCodes = account.transactions.reduce((acc, element) => {
     return acc;
 }, []);
 
-console.log(arrayOfSecureCodes);
+//console.log(arrayOfSecureCodes);
+
+const ExpiredCard= account.transactions.reduce((acc, transaction) => {
+  const newArray=[];
+  const today= new Date();
+  if(new Date (transaction.card.expiry).getTime() > today.getTime()){
+    newArray.push(transaction.card.expiry);
+  }
+  const min=minimum(newArray);
+  acc=min;
+  return acc;
+}, {});
+
+console.log(ExpiredCard);
+
+
+function minimum (arrayOfDates){
+    let min=arrayOfDates[0];
+    for(let i=1;i<arrayOfDates.length;i++){
+          if(arrayOfDates[i]<min){
+          min=arrayOfDates[i];
+          }
+    }
+    return min;
+}
+
+
+/*function convertingDateToTime(arrayOfDate){
+  const newDate= new Date(arrayOfDate).getTime();
+  return newDate;
+}*/
+
+
+function todaysDate(){
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');  // ne znam zasto sam ovde dodao +1
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  todayDate= new Date(today);
+  //console.log(todayDate);
+  const timeToday= todayDate.getTime();
+  return (timeToday);
+}
+
+//console.log(todaysDate());
+
+const arrayOfAllDates = account.transactions.reduce((acc, element) => {
+  acc.push(element.card.expiry);
+  return acc;
+}, []);
+
+//console.log(arrayOfAllDates);
+
+const arrayOfGetTimeOfAllDates= arrayOfAllDates.reduce((acc, element) => {
+  acc.push(new Date(element).getTime());
+  return acc;
+},[]);
+
+//console.log(arrayOfGetTimeOfAllDates);
+
+const arrayOfFutureDates = arrayOfGetTimeOfAllDates.filter(element => element > todaysDate());
+
+//console.log(arrayOfFutureDates);
+
+const minDate=(minimum(arrayOfFutureDates));
+const realMinDate= new Date(minDate);
+//console.log(realMinDate);
+
+
 
 
