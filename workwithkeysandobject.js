@@ -55,7 +55,7 @@ const account = {
         "location": "77033 Bonner Drive",
         "card": {
           "number": "201644615309178",
-          "expiry": "6/1/2023",
+          "expiry": "6/1/2024",
           "secureCode": 7
         }
       },
@@ -88,7 +88,7 @@ const account = {
         "location": "9668 Melvin Court",
         "card": {
           "number": "3570929969800527",
-          "expiry": "1/5/2021",
+          "expiry": "1/5/2023",
           "secureCode": 13
         }
       },
@@ -115,13 +115,13 @@ const account = {
         }
       },
       {
-        "date": "11/23/2022",
+        "date": "11/23/2021",
         "value": 49,
         "currency": "SEK",
         "location": "5 Maple Wood Trail",
         "card": {
           "number": "4844034065223936",
-          "expiry": "8/10/2021",
+          "expiry": "8/10/2024",
           "secureCode": 60
         }
       },
@@ -161,11 +161,11 @@ const account = {
       {
         "date": "5/19/2022",
         "value": 4,
-        "currency": "BAM",
+        "currency": "USD",
         "location": "1 Tony Road",
         "card": {
           "number": "56022170033010874",
-          "expiry": "1/7/2021",
+          "expiry": "1/7/2023",
           "secureCode": 85
         }
       }
@@ -199,30 +199,59 @@ const arrayOfSecureCodes = account.transactions.reduce((acc, element) => {
 
 //console.log(arrayOfSecureCodes);
 
-const ExpiredCard= account.transactions.reduce((acc, transaction) => {
-  const newArray=[];
+const arrayOfCards= account.transactions.map(transaction => transaction.card);
+
+const arrayOfDaysInFuture = arrayOfCards.filter(card => {
   const today= new Date();
-  if(new Date (transaction.card.expiry).getTime() > today.getTime()){
-    newArray.push(transaction.card.expiry);
-  }
-  const min=minimum(newArray);
-  acc=min;
-  return acc;
-}, {});
+  return (new Date (card.expiry).getTime() > today.getTime());
+});
 
-console.log(ExpiredCard);
+console.log(arrayOfDaysInFuture);
+
+//const orderedCards = arrayOfDaysInFuture.sort(function(a, b) { return ((new Date(a.expiry)).getTime()) - ((new Date(b.expiry)).getTime())});
+//console.log(orderedCards);
+
+//console.log(orderedCards[0].number);
 
 
-function minimum (arrayOfDates){
-    let min=arrayOfDates[0];
-    for(let i=1;i<arrayOfDates.length;i++){
-          if(arrayOfDates[i]<min){
-          min=arrayOfDates[i];
+
+
+
+// ------------------------------------------------------------------------------------
+
+  const arrayOfCurrency = account.transactions.reduce((acc, transaction) => {
+    key= transaction.currency;
+    if(acc[key]){
+      acc[key].push(transaction);
+    }else{
+      acc[key]=[transaction];
+    }
+    return acc;
+  }, {});
+
+  //console.log(JSON.stringify(arrayOfCurrency, null, '\t'));
+
+//-------------------------------------------------------------------------------------
+
+
+
+function minimum (arrayOfDaysInFuture){
+    let min=new Date(arrayOfDaysInFuture[0].expiry).getTime();
+    //console.log(min);
+    let minCard=arrayOfDaysInFuture[0];
+    //console.log(minCard);
+    
+    for(let i=1;i<arrayOfDaysInFuture.length;i++){
+      const currentDateTime = new Date(arrayOfDaysInFuture[i].expiry).getTime()
+          if(currentDateTime<min){
+              min=currentDateTime;
+              minCard=arrayOfDaysInFuture[i];
           }
     }
-    return min;
+    return minCard.number;
 }
 
+console.log(minimum(arrayOfDaysInFuture));
 
 /*function convertingDateToTime(arrayOfDate){
   const newDate= new Date(arrayOfDate).getTime();
