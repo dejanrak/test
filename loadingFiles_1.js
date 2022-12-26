@@ -14,7 +14,7 @@ try {
     const data=fs.readFileSync(path.join("C:","workfolder","MOCK_DATA.json"),'utf-8');
     const obj = JSON.parse(data);
     
-
+    
     resultMap = obj.map((object)=> object.id===5 );
 
     console.log(resultMap);
