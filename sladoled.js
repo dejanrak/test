@@ -21,12 +21,32 @@ const narudzbine = [
 ];
 
 
-const cenaSladoleda= narudzbine.map ((objekat) => {
-	if(narudzbine.ukusi.includes("jagoda")
 
+//drugi zadatak
+const racuni= narudzbine.map((narudzbina)=> {
+	//{ osoba: "Deki" , cena:0 }
+	const cene=narudzbina.ukusi.map((ukus) => {
+		const kugla = kugle.find((kugla) => {return ukus === kugla.ukus});
+		return kugla.cena;
+	});
+	const iznos= cene.reduce((acc, cena) => {
+		acc+=cena;
+		return acc;
+	}, 0);
+	return {osoba: narudzbina.osoba, iznos}
 });
 
-console.log(cenaSladoleda);
+const najskupljiSladoled= racuni.reduce((acc, racun) => {
+	if(racun.iznos> acc.iznos){
+		acc= racun;
+	}
+	return acc;
+});
+
+//console.log(najskupljiSladoled);
+
+//console.log(`Najskulji racun napravio je: ${najskupljiSladoled.osoba}`);
+
 
 /*
  * 1) 
@@ -36,13 +56,31 @@ console.log(cenaSladoleda);
  *
  * npr:
  * const racuni = {
- * "Deki": { cena: 115, boja: ["crvena", "zelena", "bela"] },
+ * "Deki": { cena: 115, boja: ["crvena", "zelena", "bela"] },  
  * ...
  * };
  *
  */
 
+/*const racuni2= [
+	{ osoba: "Deki",  cena: 115, boja: ["crvena", "zelena", "bela"] },
+	{ osoba: "Sale",  cena: 115, boja: ["crvena", "zelena", "bela"]}, 
+];*/
+const racuni2 = narudzbine.map((narudzbina)=> {
+	//{ osoba: "Deki" , cena:0 }
+	const boje=narudzbina.ukusi.map((ukus) => {
+		const kugla = kugle.find((kugla) => {return ukus === kugla.ukus});
+		return kugla.boja;
+	});
+	const iznos= boje.reduce((acc, cena) => {
+		acc+=cena;
+		return acc;
+	}, 0);
+	return { osoba: narudzbina.osoba, cena:iznos,  boje:boje }
+});
 
+
+console.log(racuni2);
 /*
  * 2) Ispisati ko je kupio najskuplji sladoled i koliko ga je platio
  */
@@ -55,7 +93,3 @@ console.log(cenaSladoleda);
  * 
  * P.S. Sam izaberi da li kuglu smatras vocnom ili ne, u zavisnosti od ukusa kugle :)
  */
-
-
-
-
