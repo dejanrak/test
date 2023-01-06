@@ -145,3 +145,5 @@ const rezultat = narudzbine.reduce(
 );
 
 console.log(rezultat);
+
+//prebacivanje fajla na develop
