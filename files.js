@@ -10,9 +10,6 @@
  *  	}
  */
 
-
-// Test comment
-
 function getExtensions (file){
     const extensions = file.split('.').pop();
     switch (extensions) {
@@ -25,8 +22,6 @@ function getExtensions (file){
             return "image/gif";
         case "json":
             return "application/json";
-        case "deki":
-            return "asdasd"
         default: 
             return "";
     }
@@ -44,13 +39,28 @@ const fileNames = [
 	"sale_open_question.gif",
 ];
 
-const result = fileNames.reduce();
 
+const result = {};
 
+for (const fileName of fileNames) {
+    const ext = getExtensions(fileName);
+    console.log(ext);
+    if (result[ext]) {
+        result[ext].push(fileName);
+    } else {
+        result[ext] = [fileName];
+    }
+}
+console.log(result);
 
-const fileTypes = fileNames.map(file => getExtensions(file));
-
-
-console.log(fileTypes);
-
+/*const resultReduced = fileNames.reduce((acc, fileName) => {
+    const ext = getExtensions(fileName);
+    if (acc[ext]) {
+        acc[ext].push(fileName);
+    } else {
+        acc[ext] = [fileName];
+    }
+    return acc;
+}, {});
+console.log(resultReduced);*/
 
