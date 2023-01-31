@@ -1,4 +1,5 @@
 /*
+"start": "tsc zaBrisanje.ts --lib es6 dom && node zaBrisanje.js"
  * 1)
  * Napraviti niz racuna (objekata), u kom je kljuc ime osobe, a vrednost objekat koji ima sledeca polja:
  * cena: zbir cena narucenih kugli
