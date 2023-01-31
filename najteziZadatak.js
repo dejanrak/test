@@ -60,6 +60,7 @@ const pets = [
 const ownershipRelation = [
   { id: 1, ownerId: 1, petId: 3 },
   { id: 2, ownerId: 1, petId: 7 },
+
   { id: 3, ownerId: 1, petId: 8 },
   { id: 4, ownerId: 2, petId: 1 },
   { id: 5, ownerId: 2, petId: 2 },
@@ -105,15 +106,21 @@ const resultReduce = result.reduce((acc, person) => {
 
 //console.log(resultReduce);
 
-//[TODO] Need to work with all objects
-
-/*const final = Object.entries(resultReduce).map((item) => {
-  return `${item[0]} have a ${JSON.stringify(
-    item[1][0].petSpecies
-  )} with name ${JSON.stringify(item[1][0].petName)}`;
+// DJOLETOVA FORA
+const test = Object.entries(resultReduce).map(([name, pets]) => {
+  const sentences = pets.map((pet) => {
+    const { petSpecies, petName } = pet;
+    return `${name} has a ${pet.petSpecies} with name ${petName}`;
+  });
+  return sentences;
 });
 
-console.log(final);*/
+console.log("FINAL: ", test);
+
+const recenice = test.flat();
+console.log("RECENCICE: ", recenice);
+recenice.forEach((recenica) => console.log(recenica));
+// KRAJ DJOLETOVE FORE
 
 const finalResult = result.map((person) => {
   const { name, petName, petSpecies } = person;
@@ -145,7 +152,7 @@ const finalResult2 = result.map((person) => {
   const { name, petName, petSpecies } = person;
   return `${name} ima ${petSpecies} po imenu ${petName}`;
 });
-console.log(finalResult);
+//console.log(finalResult);
 
 const mapPets = pets.map((pet) => {
   const { species, name } = pet;
@@ -160,11 +167,9 @@ const mapPets = pets.map((pet) => {
 
   const ownerNames = owners.map((owner) => owner.name);
   if (ownerNames.length === 1) {
-    console.log(
-      `${species} po imenu ${name}, ${ownerNames} ne deli ni sa kim.`
-    );
+    //console.log(`${species} po imenu ${name}, ${ownerNames} ne deli ni sa kim.`);
   } else {
-    console.log(`${species} imena ${name} dele osobe:${ownerNames}`);
+    //console.log(`${species} imena ${name} dele osobe:${ownerNames}`);
   }
 });
 
